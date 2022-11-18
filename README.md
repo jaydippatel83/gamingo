@@ -16,6 +16,88 @@ We have used a decentralized social graph by Lens protocol to build the Social a
 
 In Gamingo users will be able to share their gameplay, share updates about their tournaments and buy/sell game NFT assets on marketplace. 
 
+# Polygon
+
+```javascript
+
+
+import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/client'
+ 
+
+const APIURL = 'https://api-mumbai.lens.dev/'
+// const APIURL = 'https://api.lens.dev';
+
+
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: 'no-cache',
+    errorPolicy: 'ignore',
+  },
+  query: {
+    fetchPolicy: 'no-cache',
+    errorPolicy: 'all',
+  },
+}
+
+const httpLink = new HttpLink({ uri: APIURL }); 
+const authLink = new ApolloLink((operation, forward) => { 
+  const token = localStorage.getItem('accessToken'); 
+  operation.setContext({
+    headers: {
+      'x-access-token': token ? `Bearer ${token}` : ''
+    }
+  });
+ 
+  return forward(operation);
+});
+
+export const apolloClient = new ApolloClient({
+  link: authLink.concat(httpLink),
+  onError: ({ networkError, graphQLErrors }) => {
+    console.log('networkError', networkError)
+  },
+  cache: new InMemoryCache(),
+  defaultOptions: defaultOptions
+})
+
+
+
+
+
+```
+
+# IPFS
+
+```javascript
+import { create } from 'ipfs-http-client';
+
+const auth =
+    "Basic " +
+    Buffer.from(
+        process.env.REACT_APP_INFURA_PID + ":" + process.env.REACT_APP_INFURA_SECRET
+    ).toString("base64");
+
+const client = create({
+    host: "ipfs.infura.io",
+    port: 5001,
+    protocol: "https",
+    headers: {
+        authorization: auth,
+    },
+}); 
+
+const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    const ipfsResult = await client.add(file);
+    const imageURI = `https://superfun.infura-ipfs.io/ipfs/${ipfsResult.path}`;
+  
+    console.log(imageURI,"imageURI");
+    setSource(imageURI);
+};
+
+```
+ 
+
 # Homepage
  <img width="1280" alt="Screenshot 2022-11-18 at 8 13 03 PM" src="https://user-images.githubusercontent.com/45895007/202731048-418f54b2-a903-42cb-846f-85e04b427909.png">
 
