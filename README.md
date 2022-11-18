@@ -1,5 +1,20 @@
 # gamingo
+**Gamingo is Gamified social platform where gamers can share updates, interact with other gamers, upload their Gameplays and buy/sell their game assets on Gamingo marketplace.**
 
+## Inspiration 
+Gaming is one of the biggest industries which is growing faster than the Entertainment industry and especially in the Blockchain space, gaming will be among the top sector to bring Blockchain adoption to retail users. 
+
+## What it does
+
+Gamingo is Gamified social platform where gamers can share updates, interact with other gamers, upload their Gameplay and buy/sell their game assets on Gamingo marketplace
+ 
+
+## How we built it
+
+Gamingo is built using 1) Polygon 2) Lens Protocol - Social Graph3) Filecoin - IPFS - Storage 4) Chainlink price feed will be used for NFT Marketplace to determine the price of a token in USD 
+We have used a decentralized social graph by Lens protocol to build the Social app of Gamingo.
+
+In Gamingo users will be able to share their gameplay, share updates about their tournaments and buy/sell game NFT assets on marketplace. 
 
 # Homepage
 <img width="1280" alt="Screenshot 2022-11-18 at 6 45 58 PM" src="https://user-images.githubusercontent.com/45895007/202714836-e1f3a003-59bf-4463-9ecf-4d6658ca27aa.png">
