@@ -78,7 +78,7 @@ export const createPost = async (postData) => {
                 name: postData.name ? postData.name : postData.handle,
                 attributes: [],
                 mainContentFocus: fType,
-                appId: 'superfun', 
+                appId: 'gamingo', 
             });
         }
 
@@ -189,7 +189,7 @@ var ipfsData;
                         type: cType
                     }
                 ],
-                appId: 'gamingo',
+                appId: 'superfun',
                 animation_url: null,
             });
         } else { 
@@ -206,12 +206,12 @@ var ipfsData;
                 name: postData.name ? postData.name : postData.handle,
                 attributes: [],
                 mainContentFocus: fType,
-                appId: 'gamingo', 
+                appId: 'superfun', 
             });
         }
 
         const ipfsResult = await uploadIpfs(ipfsData); 
-
+console.log(ipfsResult,"ipfsResult");
         const createPostRequest = {
             profileId,
             contentURI: `https://superfun.infura-ipfs.io/ipfs/${ipfsResult.path}`,
@@ -223,6 +223,7 @@ var ipfsData;
             }
         };
         const result = await createPostByDispatcher(createPostRequest);
+        console.log(result,"result");
         const indexedResult = await pollUntilIndexed(result?.data?.createPostViaDispatcher?.txHash);
         const logs = indexedResult.txReceipt.logs;
         const topicId = utils.id(

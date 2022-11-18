@@ -65,14 +65,14 @@ function New_Profile_Mirror({ id }) {
 
     return (
         <Box sx={{ width: '100%', height: 'auto', overflowY: 'scroll', marginTop: '3%' }}>
-            <ImageList variant="masonry" cols={greaterThanMid && 2 || smallToMid && 2 || lessThanSmall && 1 || xsmall && 1} gap={16}>
+            <ImageList variant="masonry" cols={greaterThanMid && 2 || smallToMid && 2 || lessThanSmall && 1 || xsmall && 1} gap={4}>
                 {
                     Items && Items.map((data, i) => { 
                         return (
                             <ImageListItem
                                 ref={lastElementRef}
                                 key={i}
-                                style={{ cursor: 'pointer' }}
+                                style={{ cursor: 'pointer' ,margin:'10px'}}
                             >
                                 <MirrorCard item={data}/>
                             </ImageListItem>

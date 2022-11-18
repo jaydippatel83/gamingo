@@ -166,7 +166,7 @@ function NewProfile() {
                         }
                         <UpdateProfile open={updateProfile} onClose={handleCloseUpdateProfile} />
                         {
-                            data && <Box style={{ margin: '10px  ', background: '#fff', padding: '20px' }}>
+                            data && <Box style={{ margin: '10px  ', background: '#fff', padding: '20px',border:'1px solid #eee', borderRadius:'6px' }}>
                                 <img className='bg-img' src={data.coverPicture != null ? replaceUrl(data?.coverPicture?.original?.url) : '/assets/bg.png'} width="100" height="100" alt="" />
 
                                 <div className='text-left' style={{ marginLeft: '5%' }}>

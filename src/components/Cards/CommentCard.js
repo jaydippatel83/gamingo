@@ -168,7 +168,7 @@ function CommentCard({ item }) {
                     controls
                 />
             }
-
+<Divider flexItem orientation="horizontal"   />
             <CardContent>
                 <Typography variant="body" color="text.secondary">
                     {item?.mainPost && item?.mainPost?.metadata?.content}
@@ -190,7 +190,7 @@ function CommentCard({ item }) {
                     </div>
                 </Stack>
             </CardContent>
-
+            <Divider flexItem orientation="horizontal"   />
             <CardActions disableSpacing className="d-flex justify-content-around">
                 <div
                     className="d-flex align-items-center"
@@ -213,9 +213,7 @@ function CommentCard({ item }) {
                 </div>
                 <MirrorComponent size="15px" data={item?.mainPost} updateMirror={updateMirror} setUpdateMirror={setUpdateMirror} />
                 <CollectComponent size="15px" data={item?.mainPost} updateMirror={updateMirror} setUpdateMirror={setUpdateMirror} />
-            </CardActions>
-
-            <Divider flexItem orientation="horizontal"   />
+            </CardActions> 
             <GetCommentByUser id={item.mainPost.id} /> 
         </Card>
     )

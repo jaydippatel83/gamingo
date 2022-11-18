@@ -65,14 +65,14 @@ function New_Profile_Comment({id}) {
  
     return (
         <Box sx={{ width: '100%', height: 'auto', overflowY: 'scroll', marginTop: '3%' }}>
-            <ImageList variant="masonry" cols={greaterThanMid && 2 || smallToMid && 2 || lessThanSmall && 1 || xsmall && 1} gap={16}>
+            <ImageList variant="masonry" cols={greaterThanMid && 2 || smallToMid && 2 || lessThanSmall && 1 || xsmall && 1} gap={4}>
                 {
                     Items && Items.map((item, i) => {
                         return (
                             <ImageListItem
                                 ref={lastElementRef}
                                 key={i}
-                                style={{ cursor: 'pointer' }}
+                                style={{ cursor: 'pointer',margin:'10px' }}
                             >
                                 <CommentCard item={item} />
                             </ImageListItem>

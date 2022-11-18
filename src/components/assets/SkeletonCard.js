@@ -14,7 +14,7 @@ function Media(props) {
     const { loading = false } = props;
 
     return (
-        <Card sx={{ maxWidth: 345, m: 2 }}>
+        <Card sx={{m: 2 }}>
             <CardHeader
                 avatar={<Skeleton animation="wave" variant="circular" width={40} height={40} />
                 } 

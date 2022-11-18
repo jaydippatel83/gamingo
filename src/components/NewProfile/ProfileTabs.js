@@ -32,7 +32,7 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <Box sx={{ padding: {xs : '5px' ,sm:'10px'},minWidth:'50px' }}>
+                <Box sx={{ padding: {xs : '5px' ,sm:'5px'},minWidth:'50px' }}>
                     <Typography>{children}</Typography>
                 </Box>
             )}
@@ -122,14 +122,14 @@ export default function ProfileTabs({ id, state }) {
                 </Box>
                 <TabPanel value={value} index={0}>
                     <Box sx={{ width: '100%', height: 'auto', overflowY: 'scroll', marginTop: '3%' }}>
-                        <ImageList variant="masonry" cols={greaterThanMid && 2 || smallToMid && 2 || lessThanSmall && 1 || xsmall && 1} gap={16}>
+                        <ImageList variant="masonry" cols={greaterThanMid && 2 || smallToMid && 2 || lessThanSmall && 1 || xsmall && 1} gap={4}>
                             {
                                 Items && Items.map((item, i) => {
                                     return (
                                         <ImageListItem
                                             ref={lastElementRef}
                                             key={i}
-                                            style={{ cursor: 'pointer' }}
+                                            style={{ cursor: 'pointer',margin:'10px' }}
                                         >
                                             <PostCard item={item} />
                                         </ImageListItem>

@@ -37,11 +37,11 @@ const pages = [
     },
     {
         name: 'Gameplay',
-        path: 'memers'
+        path: 'gameplay'
     },
     {
         name: 'Marketplace',
-        path: ''
+        path: 'marketplace'
     }
     
 ]

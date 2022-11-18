@@ -19,6 +19,9 @@ import Profile from "./components/Profile"
 import TrendingDetails from './components/DetailPages/TrendingDetails'
 import NewProfile from './components/NewProfile/NewProfile';
 import Header from './components/header/Header';
+import Gameplay from './components/Gameplay';
+import Marketplace from './components/Marketplace';
+import VideoDetails from './components/DetailPages/VideoDetails';
 
 let darkTheme = createTheme({
   palette: {
@@ -67,12 +70,13 @@ root.render(
             <Route path="/memers" element={<MemeList />} />
             <Route path="/trending" element={<TrendingList />} />
             <Route path="/stories" element={<StorieList />} />
-            {/* // <Route path="/contest" element={<ContestList />} /> */}
+            // <Route path="/gameplay" element={<Gameplay />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/newprofile/:id" element={<NewProfile />} />
 
             <Route path="/trendingDetails/:id" element={<TrendingDetails />} />
-            {/* <Route path="/contestDetails/:id" element={<ContestDetails />} /> */}
+            <Route path="/video/:id" element={<VideoDetails />} />
+            <Route path="/marketplace" element={<Marketplace />} />
           </Routes>
           <Footer />
         </BrowserRouter>

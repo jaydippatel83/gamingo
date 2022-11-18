@@ -59,6 +59,11 @@ header.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation4.MuiAppBar-root.MuiAp
   margin: 7px !important;
 } */
 
+.video-image{
+  min-height: 150px;
+  border-radius: 10px;
+}
+
 .story:hover {
   transform: scale(1.05);
 }
@@ -192,6 +197,7 @@ button {
 .bg-img {
   width: 100%;  
   min-height: 240px;
+  border-radius: 6px;
 }
 .bg-img-detail{
   width: 100%;  

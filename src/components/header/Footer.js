@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 function Footer() {
     return (
-        <div className='container-fluid footer-size' style={{ background: 'rgba(255, 255, 255, 0.1)' }}>
+        <div className='container-fluid footer-size' style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
             <div className='row'>
                 <div className='col'>
                     <Box
@@ -31,7 +31,7 @@ function Footer() {
                             position: 'absolute',
                             top: '15px',
                             right: 0,
-                        }} target="_blank" href="https://twitter.com/SuperFunSocial" rel="noreferrer" > <TwitterIcon /></a>
+                        }} target="_blank" href="https://twitter.com/" rel="noreferrer" > <TwitterIcon /></a>
                     </Box>
                 </div>
             </div>

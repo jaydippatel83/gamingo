@@ -165,7 +165,7 @@ function MirrorCard({ item }) {
                     controls
                 />
             }
-
+<Divider flexItem orientation="horizontal"   />
             <CardContent>
                 <span style={{ fontSize: '20px', textTransform: 'capitalize' }}  >
                     {item.mirrorOf ? item?.mirrorOf?.metadata?.content : item?.metadata?.content}
@@ -189,7 +189,7 @@ function MirrorCard({ item }) {
                     </div>
                 </Stack>
             </CardContent>
-
+            <Divider flexItem orientation="horizontal"   />
             <CardActions disableSpacing className="d-flex justify-content-around">
                 <div
                     className="d-flex align-items-center"

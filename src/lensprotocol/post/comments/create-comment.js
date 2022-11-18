@@ -33,7 +33,7 @@ export const createComment = async (postData) => {
       name: `Comment by @ ${postData.user}`,
       attributes: [],
       media: [],
-      appId: 'superfun',
+      appId: 'gamingo',
       animation_url: null,
     });
     const ipfsResult = await uploadIpfs(ipfsData); 

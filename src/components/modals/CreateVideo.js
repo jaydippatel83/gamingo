@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/system';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Avatar, CircularProgress, Divider } from '@mui/material';
+import { Avatar, Box, CircularProgress, Divider } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import { createPost, createPostViaDis } from '../../lensprotocol/post/create-post';
@@ -22,9 +22,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import { toast } from 'react-toastify';
 import { createPostByDispatcher } from '../../lensprotocol/post/dispatcher/post-despatcher';
-
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import NoteAddIcon from '@mui/icons-material/NoteAdd';
+ 
 
 import Tooltip from '@mui/material/Tooltip';
 
@@ -49,6 +47,7 @@ const client = create({
 }); 
 
  
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -94,7 +93,7 @@ BootstrapDialogTitle.propTypes = {
 
 
 
-export default function UploadModal() {
+export default function CreateVideo() {
     const lensAuthContext = React.useContext(LensAuthContext);
     const { profile, login, update, setUpdate } = lensAuthContext;
     const [title, setTitle] = React.useState("");
@@ -102,30 +101,23 @@ export default function UploadModal() {
     const [tags, setTags] = React.useState([]);
     const [file, setFile] = React.useState("");
     const [loading, setLoading] = React.useState(false);
-    const [selectFile, setSelectFile] = React.useState("image");
+    const [videoLoader, setVideoLoader] = React.useState(false);
     const openAndSetOpen = React.useContext(LensAuthContext);
 
     const { open, setOpen } = openAndSetOpen;
     const inputRef = React.useRef();
     const [source, setSource] = React.useState("");
+ 
+ 
 
     const handleFileChange = async (e) => {
+        setVideoLoader(true);
         const file = e.target.files[0];
         const ipfsResult = await client.add(file);
-        const imageURI = `https://superfun.infura-ipfs.io/ipfs/${ipfsResult.path}`;
-      
-        console.log(imageURI,"imageURI");
+        const imageURI = `https://superfun.infura-ipfs.io/ipfs/${ipfsResult.path}`;  
         setSource(imageURI);
+        setVideoLoader(false);
     };
-
-    const handleSelectFile = (e) => {
-        setSelectFile(e.target.value); 
-        if (e.target.value === "image") {
-            setSource("");
-        } else {
-            setFile("");
-        }
-    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -153,20 +145,13 @@ export default function UploadModal() {
 
     const handleUpload = async () => {
         const fId = window.localStorage.getItem("profileId");
-        if (title.length !== 0 && (file !== "" || source !== "" || description !== "") && tags.length !== 0) {
+        if (title.length !== 0 &&  source !== "" && tags.length !== 0) {
             if (fId === undefined) {
                 toast.error("Please Login First!");
                 return;
             }
             var res;
-            var media;
-            if (description !== '') {
-                media = 'text';
-            } else if (file !== '') {
-                media = 'image';
-            } else {
-                media = 'video';
-            }
+            var media = 'video'; 
             try {
 
                 setLoading(true);
@@ -205,35 +190,23 @@ export default function UploadModal() {
             toast.error("Required all the fields!");
         }
 
-    }
-
-
-    const handleUploadImage = async (e) => { 
-        const file = e.target.files[0];
-        const ipfsResult = await client.add(file);
-        const imageURI = `https://superfun.infura-ipfs.io/ipfs/${ipfsResult.path}`;
-        setFile(imageURI);
-
-    }
-
+    } 
     const handleRemoveVideo = () => {
         setSource("");
         setFile("");
     }
     return (
         <div>
-            <Button className='' style={{ background: '#001C3E', color: 'white', textTransform: 'capitalize' }} onClick={handleClickOpen}  >Create Post</ Button>
+            <Button className='' style={{ background: '#001C3E', color: 'white', textTransform: 'capitalize' }} onClick={handleClickOpen}  >Create Video</ Button>
             <BootstrapDialog open={open} onClose={handleClose} maxWidth="sm" fullWidth style={{ borderRadius: '30px' }}>
-                <BootstrapDialogTitle onClose={handleClose}>Create Post</BootstrapDialogTitle>
+                <BootstrapDialogTitle onClose={handleClose}>Create Video</BootstrapDialogTitle>
 
                 <DialogContent dividers >
 
                     <div>
                         <input onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title" className="title" /><br></br>
-                        {
-                            file === "" && source === "" && <textarea onChange={(e) => setDescription(e.target.value)} rows={3} type="text" placeholder="Take a Note..." className="take-note" autoFocus="autofocus " />
-
-                        }
+                       <textarea onChange={(e) => setDescription(e.target.value)} rows={3} type="text" placeholder="Take a Note..." className="take-note" autoFocus="autofocus " />
+  
                         <input onKeyUp={event => addTags(event)} type="text" placeholder='#Add Tags' className="take-note" /><br></br>
                     </div>
 
@@ -249,10 +222,11 @@ export default function UploadModal() {
 
                             ))}
                         </div>
-                    </Stack>
-
+                    </Stack> 
                     {
-                        file !== "" && <div className='d-flex justify-content-between'><img style={{ borderRadius: '10px' }} height="200px" className="p-2" src={file}></img><CancelIcon style={{ fontSize: '24px', }} onClick={handleRemoveVideo} /></div>
+                        videoLoader && <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <CircularProgress size={35}  color="primary"/>
+                    </Box>
                     }
                     {source && (
                         <div className='d-flex justify-content-between '>
@@ -267,31 +241,9 @@ export default function UploadModal() {
                         </div>
                     )}
 
-                    {
-                        description === "" && <div className='d-flex mt-2'>
+                   <div className='d-flex mt-2'> 
                             {
-                                file === "" && source === "" && <Tooltip title="Upload Image">
-                                    <IconButton
-                                        size="small"
-                                        sx={{ ml: 2 }}
-                                    >
-                                        <input
-                                            onChange={(e) => handleUploadImage(e)}
-                                            type="file"
-                                            name="file"
-                                            id="file"
-                                            className="input-file d-none" />
-                                        <label
-                                            htmlFor="file"
-                                            style={{ width: '100%', cursor: 'pointer' }}
-                                            className="rounded-3 text-center p-1   js-labelFile   " >
-                                            <FontAwesomeIcon color='#F66A24' size="lg" icon={faImages} />
-                                        </label>
-                                    </IconButton>
-                                </Tooltip>
-                            }
-                            {
-                                source === "" && file === "" && <Tooltip title="Upload Video">
+                                source === "" && <Tooltip title="Upload Video">
                                     <IconButton
                                         size="small"
                                         sx={{ ml: 2 }}
@@ -314,13 +266,12 @@ export default function UploadModal() {
                                     </IconButton>
                                 </Tooltip>
                             }
-                        </div>
-                    }
+                        </div> 
 
                 </DialogContent>
                 <DialogActions className='d-flex justify-content-end'>
-                    <Button variant='contained' onClick={handleClose}>Cancel</Button>
-                    <Button variant='contained' onClick={handleUpload}>{loading ? <CircularProgress size={20} /> : "Upload"}</Button>
+                    <Button variant='contained'  onClick={handleClose}>Cancel</Button>
+                    <Button variant='contained' onClick={handleUpload}>{loading ? <CircularProgress size={20} color="inherit" /> : "Upload"}</Button>
 
                 </DialogActions>
             </BootstrapDialog>

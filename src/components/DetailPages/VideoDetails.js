@@ -31,7 +31,7 @@ import PostCard from '../Cards/PostCard';
 import LoadingCard from '../assets/SkeletonCard';
 
 
-function TrendingDetails() {
+function VideoDetails() {
   const navigate = useNavigate();
   const [data, setData] = useState();
   const [showComment, setShowComment] = useState(false);
@@ -382,4 +382,4 @@ function TrendingDetails() {
   )
 }
 
-export default TrendingDetails
+export default VideoDetails
