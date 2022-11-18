@@ -17,7 +17,8 @@ We have used a decentralized social graph by Lens protocol to build the Social a
 In Gamingo users will be able to share their gameplay, share updates about their tournaments and buy/sell game NFT assets on marketplace. 
 
 # Homepage
-<img width="1280" alt="Screenshot 2022-11-18 at 6 45 58 PM" src="https://user-images.githubusercontent.com/45895007/202714836-e1f3a003-59bf-4463-9ecf-4d6658ca27aa.png">
+ <img width="1280" alt="Screenshot 2022-11-18 at 8 13 03 PM" src="https://user-images.githubusercontent.com/45895007/202731048-418f54b2-a903-42cb-846f-85e04b427909.png">
+
  
 # Create Publication
 <img width="1280" alt="Screenshot 2022-11-18 at 6 46 10 PM" src="https://user-images.githubusercontent.com/45895007/202714868-9d58a1e2-c7e6-4dda-8e62-1fd50a568ab0.png">
